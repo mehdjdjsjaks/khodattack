@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>چت‌بات دستیار اتک</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            direction: rtl;
+            text-align: center;
+            background-color: #121212;
+            color: white;
+            padding: 20px;
+        }
+        #chat-box {
+            border: 2px solid #00ff00;
+            padding: 20px;
+            border-radius: 10px;
+            display: inline-block;
+            width: 300px;
+        }
+        input {
+            width: 90%;
+            padding: 8px;
+            margin-top: 10px;
+        }
+        button {
+            background-color: #00ff00;
+            color: black;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="chat-box">
+        <p id="bot-message">سلام من ربات دستیار اتک هستم! چطور می‌تونم بهتون کمک کنم؟</p>
+        <p>گزینه‌ها:</p>
+        <p>1. آموزش فیلتر کردن</p>
+        <p>2. آموزش USB KILLER</p>
+        <input type="text" id="user-input" placeholder="عدد گزینه را وارد کنید...">
+        <button onclick="processInput()">ارسال</button>
+        <p id="response"></p>
+    </div>
+
+    <script>
+        let step = 1; // متغیر برای کنترل مراحل چت
+
+        function processInput() {
+            let input = document.getElementById("user-input").value.trim();
+            let response = document.getElementById("response");
+
+            if (step === 1) { // مرحله اول: انتخاب گزینه
+                if (input === "1" || input === "2") {
+                    response.innerText = "برای دریافت آموزش فیلتر کردن باید برنامه میلی رو داخل بازار یا مایکت نصب کنید و با این کد دعوت milli-8dock ثبت نام کنید بعد ساعتی که ثبت نام کردید رو بنویسید که چک کنیم اگر درست باشه آموزش داخل همین صفحه ارسال میشه";
+                    step = 2; // تغییر مرحله به بعدی
+                } else {
+                    response.innerText = "لطفاً یکی از این دو گزینه را انتخاب کنید.";
+                }
+            } else if (step === 2) { // مرحله دوم: بررسی ثبت‌نام
+                response.innerText = "در حال بررسی...";
+                setTimeout(() => {
+                    response.innerText = "کاربر عزیز شما هنوز ثبت نام نکردید.";
+                }, 1000); // مکث 1 ثانیه
+            }
+        }
+    </script>
+</body>
+</html>
